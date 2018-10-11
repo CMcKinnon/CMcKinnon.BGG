@@ -1,24 +1,21 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace CMcKinnon.BGG.Contracts
 {
     [Serializable]
-    [DesignerCategory("code")]
     [XmlType(AnonymousType = true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    [XmlRoot(Namespace = "", IsNullable = false)]
     public partial class boardgames
     {
+        [XmlElement("boardgame")]
+        public boardgamesBoardgame[] boardgame { get; set; }
 
-        public boardgamesBoardgame boardgame { get; set; }
-
-        [XmlAttribute]
+        [XmlAttribute()]
         public string termsofuse { get; set; }
     }
 
     [Serializable]
-    [DesignerCategory("code")]
     [XmlType(AnonymousType = true)]
     public partial class boardgamesBoardgame
     {
@@ -26,19 +23,23 @@ namespace CMcKinnon.BGG.Contracts
 
         public ushort yearpublished { get; set; }
 
-        [XmlAttribute]
-        public ushort objectid { get; set; }
+        [XmlAttribute()]
+        public uint objectid { get; set; }
     }
 
     [Serializable]
-    [DesignerCategory("code")]
     [XmlType(AnonymousType = true)]
     public partial class boardgamesBoardgameName
     {
         [XmlAttribute]
         public bool primary { get; set; }
 
+        [XmlIgnore]
+        public bool primarySpecified { get; set; }
+
         [XmlText]
         public string Value { get; set; }
     }
+
+
 }
