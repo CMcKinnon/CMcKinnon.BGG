@@ -1,14 +1,11 @@
-﻿using CMcKinnon.BGG.Client.Web;
-using CMcKinnon.BGG.XmlContracts;
+﻿using CMcKinnon.BGG.Client.Extensions;
+using CMcKinnon.BGG.Client.Web;
 using CMcKinnon.BGG.Contracts.Constants;
 using CMcKinnon.BGG.Contracts.Search;
-using System.IO;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+using CMcKinnon.BGG.XmlContracts;
 using System.Collections.Generic;
-using CMcKinnon.BGG.Client.Extensions;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace CMcKinnon.BGG.Client
