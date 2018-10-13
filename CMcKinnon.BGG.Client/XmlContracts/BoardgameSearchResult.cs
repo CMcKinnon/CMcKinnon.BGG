@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace CMcKinnon.BGG.XmlContracts
+namespace CMcKinnon.BGG.Client.XmlContracts
 {
     [Serializable]
     [XmlType(AnonymousType = true)]
@@ -19,7 +19,8 @@ namespace CMcKinnon.BGG.XmlContracts
     [XmlType(AnonymousType = true)]
     public partial class boardgamesBoardgame
     {
-        public boardgamesBoardgameName name { get; set; }
+        [XmlElement(ElementName = "name")]
+        public boardgamesBoardgameName[] names { get; set; }
 
         [XmlElement(ElementName = "yearpublished")]
         public int YearPublished { get; set; }
@@ -41,6 +42,4 @@ namespace CMcKinnon.BGG.XmlContracts
         [XmlText]
         public string Value { get; set; }
     }
-
-
 }
