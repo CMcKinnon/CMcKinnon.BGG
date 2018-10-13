@@ -1,11 +1,15 @@
 ﻿using CMcKinnon.BGG.Client.Web;
-using CMcKinnon.BGG.Contracts;
+using CMcKinnon.BGG.XmlContracts;
 using CMcKinnon.BGG.Contracts.Constants;
+using CMcKinnon.BGG.Contracts.Search;
 using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.Collections.Generic;
+using CMcKinnon.BGG.Client.Extensions;
+using System.Web;
 
 namespace CMcKinnon.BGG.Client
 {
@@ -18,9 +22,9 @@ namespace CMcKinnon.BGG.Client
             this.xmlRestClient = xmlRestClient;
         }
 
-        public async Task<boardgames> SearchAsync(string term, bool exact)
+        public async Task<IList<Boardgame>> SearchAsync(string term, bool exact)
         {
-            string uri = $"{Endpoints.SEARCH}?search={term}";
+            string uri = $"{Endpoints.SEARCH}?search={HttpUtility.UrlEncode(term)}";
             if (exact)
             {
                 uri = $"{uri}&exact=1";
@@ -29,18 +33,9 @@ namespace CMcKinnon.BGG.Client
 
             resp.EnsureSuccessStatusCode();
 
-            byte[] contentBytes = await resp.Content.ReadAsByteArrayAsync();
-            string xml = Encoding.UTF8.GetString(contentBytes);
+            BoardgameSearchResult result = await resp.Content.DeserializeXml<BoardgameSearchResult>();
 
-            boardgames result;
-            using(TextReader reader = new StringReader(xml))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(boardgames));
-                result = (boardgames)serializer.Deserialize(reader);
-
-            }
-
-            return result;
+            return result.ConvertToBoardgameList();
         }
     }
 }

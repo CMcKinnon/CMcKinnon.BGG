@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace CMcKinnon.BGG.Contracts
+namespace CMcKinnon.BGG.XmlContracts
 {
     [Serializable]
     [XmlType(AnonymousType = true)]
-    [XmlRoot(Namespace = "", IsNullable = false)]
-    public partial class boardgames
+    [XmlRoot(Namespace = "", IsNullable = false, ElementName = "boardgames")]
+    public partial class BoardgameSearchResult
     {
         [XmlElement("boardgame")]
-        public boardgamesBoardgame[] boardgame { get; set; }
+        public boardgamesBoardgame[] Boardgames { get; set; }
 
         [XmlAttribute()]
         public string termsofuse { get; set; }
@@ -21,18 +21,19 @@ namespace CMcKinnon.BGG.Contracts
     {
         public boardgamesBoardgameName name { get; set; }
 
-        public ushort yearpublished { get; set; }
+        [XmlElement(ElementName = "yearpublished")]
+        public int YearPublished { get; set; }
 
-        [XmlAttribute()]
-        public uint objectid { get; set; }
+        [XmlAttribute(AttributeName = "objectid")]
+        public uint ObjectId { get; set; }
     }
 
     [Serializable]
     [XmlType(AnonymousType = true)]
     public partial class boardgamesBoardgameName
     {
-        [XmlAttribute]
-        public bool primary { get; set; }
+        [XmlAttribute(AttributeName = "primary")]
+        public bool IsPrimaryName { get; set; }
 
         [XmlIgnore]
         public bool primarySpecified { get; set; }
