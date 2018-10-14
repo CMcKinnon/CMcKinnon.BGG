@@ -28,5 +28,9 @@ namespace CMcKinnon.BGG.Contracts.Search
         public List<LinkedObject> PodcastEpisodes { get; set; }
         public List<LinkedObject> Subdomains { get; set; }
         public List<LinkedObject> Versions { get; set; }
+
+        public SuggestedPlayerCountPoll SuggestedPlayerCountPoll { get; set; }
+        public LanguageDependencePoll LanguageDependencePoll { get; set; }
+        public PlayerAgePoll PlayerAgePoll { get; set; }
     }
 }

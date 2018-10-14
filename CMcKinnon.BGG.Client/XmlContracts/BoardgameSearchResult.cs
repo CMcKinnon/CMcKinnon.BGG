@@ -84,6 +84,9 @@ namespace CMcKinnon.BGG.Client.XmlContracts
 
         [XmlElement(ElementName = "boardgameversion")]
         public _LinkedObject[] Versions { get; set; }
+
+        [XmlElement(ElementName = "poll")]
+        public Poll[] Polls { get; set; }
     }
 
     [Serializable]
@@ -112,5 +115,47 @@ namespace CMcKinnon.BGG.Client.XmlContracts
 
         [XmlText]
         public string Value { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class Poll
+    {
+        [XmlAttribute(AttributeName = "name")]
+        public string Name { get; set; }
+
+        [XmlAttribute(AttributeName = "title")]
+        public string Title { get; set; }
+
+        [XmlAttribute(AttributeName = "totalvotes")]
+        public uint TotalVotes { get; set; }
+
+        [XmlElement(ElementName = "results")]
+        public PollResults[] Results { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class PollResults
+    {
+        [XmlAttribute(AttributeName = "numplayers")]
+        public string NumberOfPlayers { get; set; }
+
+        [XmlElement(ElementName = "result")]
+        public PollResult[] Results { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class PollResult
+    {
+        [XmlAttribute(AttributeName = "value")]
+        public string Value { get; set; }
+
+        [XmlAttribute(AttributeName = "level")]
+        public uint Level { get; set; }
+
+        [XmlAttribute(AttributeName = "numvotes")]
+        public uint NumberOfVotes { get; set; }
     }
 }
