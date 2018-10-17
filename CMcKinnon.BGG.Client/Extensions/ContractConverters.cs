@@ -50,7 +50,8 @@ namespace CMcKinnon.BGG.Client.Extensions
                 SuggestedPlayerCountPoll = ConvertPlayerCountPoll(b.Polls),
                 LanguageDependencePoll = ConvertLanguageDependence(b.Polls),
                 PlayerAgePoll = ConvertPlayerAgePoll(b.Polls),
-                Comments = b.Comments?.Select(c => new Comment { UserName = c.UserName, Rating = c.Rating, Text = c.Value }).ToList() ?? new List<Comment>()
+                Comments = b.Comments?.Select(c => new Comment { UserName = c.UserName, Rating = c.Rating, Text = c.Value }).ToList() ?? new List<Comment>(),
+                Statistics = ConvertStatistics(b.Statistics)
             })
             .ToList() ?? new List<Boardgame>();
         }
@@ -128,6 +129,40 @@ namespace CMcKinnon.BGG.Client.Extensions
                 Age16Votes = result.Results.FirstOrDefault(rr => rr.Value == "16")?.NumberOfVotes ?? 0,
                 Age18Votes = result.Results.FirstOrDefault(rr => rr.Value == "18")?.NumberOfVotes ?? 0,
                 Age21AndUpVotes = result.Results.FirstOrDefault(rr => rr.Value == "21 and up")?.NumberOfVotes ?? 0
+            };
+        }
+
+        private static Statistics ConvertStatistics(_Statistics statistics)
+        {
+            if (statistics == null)
+            {
+                return null;
+            }
+
+            return new Statistics
+            {
+                Page = statistics.Page,
+                NumberOfUserRatings = statistics.Ratings?.NumberOfUserRatings ?? 0,
+                AverageRating = statistics.Ratings?.AverageRating ?? 0,
+                BayesAverageRating = statistics.Ratings?.BayesAverageRating ?? 0,
+                StandardDeviation = statistics.Ratings?.StandardDeviation ?? 0,
+                Median = statistics?.Ratings.Median ?? 0,
+                NumberOfUsersOwning = statistics.Ratings?.NumberOfUsersOwning ?? 0,
+                NumberOfUsersWantingToTrade = statistics.Ratings?.NumberOfUsersWantingToTrade ?? 0,
+                NumberOfUsersWantingInTrade = statistics.Ratings?.NumberOfUsersWantingInTrade ?? 0,
+                NumberOfUsersWishing = statistics.Ratings?.NumberOfUsersWishing ?? 0,
+                NumberOfComments = statistics.Ratings?.NumberOfComments ?? 0,
+                NumberOfWeightVotes = statistics.Ratings?.NumberOfWeightVotes ?? 0,
+                AverageWeight = statistics.Ratings?.AverageWeight ?? 0,
+                Ranks = statistics.Ratings?.Ranks?.Ranks?.Select(r => new Rank
+                {
+                    Type = r.Type,
+                    BayesAverage = r.BayesAverage,
+                    FriendlyName = r.FriendlyName,
+                    Id = r.Id,
+                    Name = r.Name,
+                    Value = r.Value
+                }).ToList() ?? new List<Rank>()
             };
         }
     }

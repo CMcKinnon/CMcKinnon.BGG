@@ -33,5 +33,6 @@ namespace CMcKinnon.BGG.Contracts.Boardgames
         public LanguageDependencePoll LanguageDependencePoll { get; set; }
         public PlayerAgePoll PlayerAgePoll { get; set; }
         public List<Comment> Comments { get; set; }
+        public Statistics Statistics { get; set; }
     }
 }

@@ -90,6 +90,9 @@ namespace CMcKinnon.BGG.Client.XmlContracts
 
         [XmlElement(ElementName = "comment")]
         public _Comment[] Comments { get; set; }
+
+        [XmlElement(ElementName = "statistics")]
+        public _Statistics Statistics { get; set; }
     }
 
     [Serializable]
@@ -174,5 +177,91 @@ namespace CMcKinnon.BGG.Client.XmlContracts
 
         [XmlText]
         public string Value { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class _Statistics
+    {
+        [XmlAttribute(AttributeName = "page")]
+        public string Page { get; set; }
+
+        [XmlElement(ElementName = "ratings")]
+        public _Ratings Ratings { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class _Ratings
+    {
+        [XmlElement(ElementName = "usersrated")]
+        public int NumberOfUserRatings { get; set; }
+
+        [XmlElement(ElementName = "average")]
+        public decimal AverageRating { get; set; }
+
+        [XmlElement(ElementName = "bayesaverage")]
+        public decimal BayesAverageRating { get; set; }
+
+        [XmlElement(ElementName = "stddev")]
+        public decimal StandardDeviation { get; set; }
+
+        [XmlElement(ElementName = "median")]
+        public decimal Median { get; set; }
+
+        [XmlElement(ElementName = "owned")]
+        public int NumberOfUsersOwning { get; set; }
+
+        [XmlElement(ElementName = "trading")]
+        public int NumberOfUsersWantingToTrade { get; set; }
+
+        [XmlElement(ElementName = "wanting")]
+        public int NumberOfUsersWantingInTrade { get; set; }
+
+        [XmlElement(ElementName = "wishing")]
+        public int NumberOfUsersWishing { get; set; }
+
+        [XmlElement(ElementName = "numcomments")]
+        public int NumberOfComments { get; set; }
+
+        [XmlElement(ElementName = "numweights")]
+        public int NumberOfWeightVotes { get; set; }
+
+        [XmlElement(ElementName = "averageweight")]
+        public decimal AverageWeight { get; set; }
+
+        [XmlElement(ElementName = "ranks")]
+        public _Ranks Ranks { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class _Ranks
+    {
+        [XmlElement(ElementName = "rank")]
+        public _Rank[] Ranks { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class _Rank
+    {
+        [XmlAttribute(AttributeName = "type")]
+        public string Type { get; set; }
+
+        [XmlAttribute(AttributeName = "id")]
+        public int Id { get; set; }
+
+        [XmlAttribute(AttributeName = "name")]
+        public string Name { get; set; }
+
+        [XmlAttribute(AttributeName = "friendlyname")]
+        public string FriendlyName { get; set; }
+
+        [XmlAttribute(AttributeName = "value")]
+        public int Value { get; set; }
+
+        [XmlAttribute(AttributeName = "bayesaverage")]
+        public decimal BayesAverage { get; set; }
     }
 }

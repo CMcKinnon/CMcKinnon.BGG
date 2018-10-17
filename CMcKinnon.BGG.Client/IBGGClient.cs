@@ -8,6 +8,6 @@ namespace CMcKinnon.BGG.Client
     public interface IBGGClient
     {
         Task<IList<BoardgameResult>> SearchAsync(string term, bool exact = false);
-        Task<IList<Boardgame>> GetBoardgamesAsync(int[] objectIds, bool includeComments = false);
+        Task<IList<Boardgame>> GetBoardgamesAsync(int[] objectIds, bool includeComments = false, bool includeStatistics = false);
     }
 }

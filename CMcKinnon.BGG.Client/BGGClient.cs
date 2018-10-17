@@ -37,7 +37,7 @@ namespace CMcKinnon.BGG.Client
             return result.ConvertToBoardgameResultList();
         }
 
-        public async Task<IList<Boardgame>> GetBoardgamesAsync(int[] objectIds, bool includeComments = false)
+        public async Task<IList<Boardgame>> GetBoardgamesAsync(int[] objectIds, bool includeComments = false, bool includeStatistics = false)
         {
             string uri = $"{Endpoints.GET_BOARDGAMES}/{string.Join(",", objectIds)}";
 
@@ -45,6 +45,10 @@ namespace CMcKinnon.BGG.Client
             if (includeComments)
             {
                 queryParams.Add("comments=1");
+            }
+            if (includeStatistics)
+            {
+                queryParams.Add("stats=1");
             }
 
             if (queryParams.Any())
