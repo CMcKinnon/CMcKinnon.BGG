@@ -87,6 +87,9 @@ namespace CMcKinnon.BGG.Client.XmlContracts
 
         [XmlElement(ElementName = "poll")]
         public Poll[] Polls { get; set; }
+
+        [XmlElement(ElementName = "comment")]
+        public _Comment[] Comments { get; set; }
     }
 
     [Serializable]
@@ -157,5 +160,19 @@ namespace CMcKinnon.BGG.Client.XmlContracts
 
         [XmlAttribute(AttributeName = "numvotes")]
         public uint NumberOfVotes { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class _Comment
+    {
+        [XmlAttribute(AttributeName = "username")]
+        public string UserName { get; set; }
+
+        [XmlAttribute(AttributeName = "rating")]
+        public string Rating { get; set; }
+
+        [XmlText]
+        public string Value { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CMcKinnon.BGG.Contracts.Search
+namespace CMcKinnon.BGG.Contracts.Boardgames
 {
     public class SuggestedPlayerCountPoll
     {

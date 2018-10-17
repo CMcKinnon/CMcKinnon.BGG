@@ -1,4 +1,4 @@
-﻿namespace CMcKinnon.BGG.Contracts.Search
+﻿namespace CMcKinnon.BGG.Contracts.Boardgames
 {
     public class PlayerAgePoll
     {

@@ -1,9 +1,11 @@
 ﻿using CMcKinnon.BGG.Client.Extensions;
 using CMcKinnon.BGG.Client.Web;
 using CMcKinnon.BGG.Client.XmlContracts;
+using CMcKinnon.BGG.Contracts.Boardgames;
 using CMcKinnon.BGG.Contracts.Constants;
 using CMcKinnon.BGG.Contracts.Search;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
@@ -19,7 +21,7 @@ namespace CMcKinnon.BGG.Client
             this.xmlRestClient = xmlRestClient;
         }
 
-        public async Task<IList<BoardgameResult>> SearchAsync(string term, bool exact)
+        public async Task<IList<BoardgameResult>> SearchAsync(string term, bool exact = false)
         {
             string uri = $"{Endpoints.SEARCH}?search={HttpUtility.UrlEncode(term)}";
             if (exact)
@@ -35,9 +37,20 @@ namespace CMcKinnon.BGG.Client
             return result.ConvertToBoardgameResultList();
         }
 
-        public async Task<IList<Boardgame>> GetBoardgamesAsync(int[] objectIds)
+        public async Task<IList<Boardgame>> GetBoardgamesAsync(int[] objectIds, bool includeComments = false)
         {
             string uri = $"{Endpoints.GET_BOARDGAMES}/{string.Join(",", objectIds)}";
+
+            List<string> queryParams = new List<string>();
+            if (includeComments)
+            {
+                queryParams.Add("comments=1");
+            }
+
+            if (queryParams.Any())
+            {
+                uri = uri + $"?{string.Join("&", queryParams)}";
+            }
 
             HttpResponseMessage resp = await xmlRestClient.GetAsync(uri);
 

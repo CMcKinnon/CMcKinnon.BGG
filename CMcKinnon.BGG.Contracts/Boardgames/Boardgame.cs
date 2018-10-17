@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CMcKinnon.BGG.Contracts.Search
+namespace CMcKinnon.BGG.Contracts.Boardgames
 {
     public class Boardgame
     {
@@ -32,5 +32,6 @@ namespace CMcKinnon.BGG.Contracts.Search
         public SuggestedPlayerCountPoll SuggestedPlayerCountPoll { get; set; }
         public LanguageDependencePoll LanguageDependencePoll { get; set; }
         public PlayerAgePoll PlayerAgePoll { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

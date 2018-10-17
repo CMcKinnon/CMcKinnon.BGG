@@ -3,6 +3,7 @@ using CMcKinnon.BGG.Client.XmlContracts;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using CMcKinnon.BGG.Contracts.Boardgames;
 
 namespace CMcKinnon.BGG.Client.Extensions
 {
@@ -36,7 +37,7 @@ namespace CMcKinnon.BGG.Client.Extensions
                 MinPlayTime = b.MinPlayTime,
                 PlayingTime = b.PlayingTime,
                 Thumbnail = b.Thumbnail,
-                Publishers = b.Publishers?.Select(p => new LinkedObject { ObjectId = p.ObjectId, Value = p.Value}).ToList() ?? new List<LinkedObject>(),
+                Publishers = b.Publishers?.Select(p => new LinkedObject { ObjectId = p.ObjectId, Value = p.Value }).ToList() ?? new List<LinkedObject>(),
                 Artists = b.Artists?.Select(p => new LinkedObject { ObjectId = p.ObjectId, Value = p.Value }).ToList() ?? new List<LinkedObject>(),
                 Designers = b.Designers?.Select(p => new LinkedObject { ObjectId = p.ObjectId, Value = p.Value }).ToList() ?? new List<LinkedObject>(),
                 Families = b.Families?.Select(p => new LinkedObject { ObjectId = p.ObjectId, Value = p.Value }).ToList() ?? new List<LinkedObject>(),
@@ -48,7 +49,8 @@ namespace CMcKinnon.BGG.Client.Extensions
                 Versions = b.Versions?.Select(p => new LinkedObject { ObjectId = p.ObjectId, Value = p.Value }).ToList() ?? new List<LinkedObject>(),
                 SuggestedPlayerCountPoll = ConvertPlayerCountPoll(b.Polls),
                 LanguageDependencePoll = ConvertLanguageDependence(b.Polls),
-                PlayerAgePoll = ConvertPlayerAgePoll(b.Polls)
+                PlayerAgePoll = ConvertPlayerAgePoll(b.Polls),
+                Comments = b.Comments?.Select(c => new Comment { UserName = c.UserName, Rating = c.Rating, Text = c.Value }).ToList() ?? new List<Comment>()
             })
             .ToList() ?? new List<Boardgame>();
         }
@@ -94,7 +96,7 @@ namespace CMcKinnon.BGG.Client.Extensions
                 SomeNecessaryInGameTextVotes = result.Results.FirstOrDefault(rr => rr.Level == 2)?.NumberOfVotes ?? 0,
                 ModerateInGameTextVotes = result.Results.FirstOrDefault(rr => rr.Level == 3)?.NumberOfVotes ?? 0,
                 ExtensiveInGameTextVotes = result.Results.FirstOrDefault(rr => rr.Level == 4)?.NumberOfVotes ?? 0,
-                UnplayableInAnotherLanguageVotes = result.Results.FirstOrDefault(rr => rr.Level ==5)?.NumberOfVotes ?? 0
+                UnplayableInAnotherLanguageVotes = result.Results.FirstOrDefault(rr => rr.Level == 5)?.NumberOfVotes ?? 0
             };
         }
 
