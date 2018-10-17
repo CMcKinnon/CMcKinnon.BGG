@@ -6,10 +6,10 @@ namespace CMcKinnon.BGG.Client.XmlContracts
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false, ElementName = "boardgames")]
-    public class BoardgameSearchResult
+    public class _BoardgameSearchResult
     {
         [XmlElement("boardgame")]
-        public boardgamesBoardgame[] Boardgames { get; set; }
+        public _boardgamesBoardgame[] Boardgames { get; set; }
 
         [XmlAttribute()]
         public string termsofuse { get; set; }
@@ -17,13 +17,13 @@ namespace CMcKinnon.BGG.Client.XmlContracts
 
     [Serializable]
     [XmlType(AnonymousType = true)]
-    public class boardgamesBoardgame
+    public class _boardgamesBoardgame
     {
         [XmlAttribute(AttributeName = "objectid")]
         public uint ObjectId { get; set; }
 
         [XmlElement(ElementName = "name")]
-        public boardgamesBoardgameName[] names { get; set; }
+        public _boardgamesBoardgameName[] names { get; set; }
 
         [XmlElement(ElementName = "yearpublished")]
         public int YearPublished { get; set; }
@@ -86,7 +86,7 @@ namespace CMcKinnon.BGG.Client.XmlContracts
         public _LinkedObject[] Versions { get; set; }
 
         [XmlElement(ElementName = "poll")]
-        public Poll[] Polls { get; set; }
+        public _Poll[] Polls { get; set; }
 
         [XmlElement(ElementName = "comment")]
         public _Comment[] Comments { get; set; }
@@ -97,7 +97,7 @@ namespace CMcKinnon.BGG.Client.XmlContracts
 
     [Serializable]
     [XmlType(AnonymousType = true)]
-    public class boardgamesBoardgameName
+    public class _boardgamesBoardgameName
     {
         [XmlAttribute(AttributeName = "primary")]
         public bool IsPrimaryName { get; set; }
@@ -125,7 +125,7 @@ namespace CMcKinnon.BGG.Client.XmlContracts
 
     [Serializable]
     [XmlType(AnonymousType = true)]
-    public class Poll
+    public class _Poll
     {
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
@@ -137,23 +137,23 @@ namespace CMcKinnon.BGG.Client.XmlContracts
         public uint TotalVotes { get; set; }
 
         [XmlElement(ElementName = "results")]
-        public PollResults[] Results { get; set; }
+        public _PollResults[] Results { get; set; }
     }
 
     [Serializable]
     [XmlType(AnonymousType = true)]
-    public class PollResults
+    public class _PollResults
     {
         [XmlAttribute(AttributeName = "numplayers")]
         public string NumberOfPlayers { get; set; }
 
         [XmlElement(ElementName = "result")]
-        public PollResult[] Results { get; set; }
+        public _PollResult[] Results { get; set; }
     }
 
     [Serializable]
     [XmlType(AnonymousType = true)]
-    public class PollResult
+    public class _PollResult
     {
         [XmlAttribute(AttributeName = "value")]
         public string Value { get; set; }

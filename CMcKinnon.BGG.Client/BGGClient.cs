@@ -32,7 +32,7 @@ namespace CMcKinnon.BGG.Client
 
             resp.EnsureSuccessStatusCode();
 
-            BoardgameSearchResult result = await resp.Content.DeserializeXml<BoardgameSearchResult>();
+            _BoardgameSearchResult result = await resp.Content.DeserializeXml<_BoardgameSearchResult>();
 
             return result.ConvertToBoardgameResultList();
         }
@@ -60,7 +60,7 @@ namespace CMcKinnon.BGG.Client
 
             resp.EnsureSuccessStatusCode();
 
-            BoardgameSearchResult result = await resp.Content.DeserializeXml<BoardgameSearchResult>();
+            _BoardgameSearchResult result = await resp.Content.DeserializeXml<_BoardgameSearchResult>();
 
             return result.ConvertToBoardgameList();
         }

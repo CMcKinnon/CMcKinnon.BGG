@@ -9,7 +9,7 @@ namespace CMcKinnon.BGG.Client.Extensions
 {
     public static class ContractConverters
     {
-        public static IList<BoardgameResult> ConvertToBoardgameResultList(this BoardgameSearchResult boardgames)
+        public static IList<BoardgameResult> ConvertToBoardgameResultList(this _BoardgameSearchResult boardgames)
         {
             return boardgames.Boardgames?.Select(b => new BoardgameResult
             {
@@ -20,7 +20,7 @@ namespace CMcKinnon.BGG.Client.Extensions
             .ToList() ?? new List<BoardgameResult>();
         }
 
-        public static IList<Boardgame> ConvertToBoardgameList(this BoardgameSearchResult boardgames)
+        public static IList<Boardgame> ConvertToBoardgameList(this _BoardgameSearchResult boardgames)
         {
             return boardgames.Boardgames?.Select(b => new Boardgame
             {
@@ -56,9 +56,9 @@ namespace CMcKinnon.BGG.Client.Extensions
             .ToList() ?? new List<Boardgame>();
         }
 
-        private static SuggestedPlayerCountPoll ConvertPlayerCountPoll(Poll[] polls)
+        private static SuggestedPlayerCountPoll ConvertPlayerCountPoll(_Poll[] polls)
         {
-            Poll poll = polls.FirstOrDefault(p => p.Name == "suggested_numplayers");
+            _Poll poll = polls.FirstOrDefault(p => p.Name == "suggested_numplayers");
             if (poll == null)
             {
                 return null;
@@ -77,15 +77,15 @@ namespace CMcKinnon.BGG.Client.Extensions
             };
         }
 
-        private static LanguageDependencePoll ConvertLanguageDependence(Poll[] polls)
+        private static LanguageDependencePoll ConvertLanguageDependence(_Poll[] polls)
         {
-            Poll poll = polls.FirstOrDefault(p => p.Name == "language_dependence");
+            _Poll poll = polls.FirstOrDefault(p => p.Name == "language_dependence");
             if (poll == null)
             {
                 return null;
             }
 
-            PollResults result = poll.Results.FirstOrDefault();
+            _PollResults result = poll.Results.FirstOrDefault();
             if (result == null)
             {
                 return null;
@@ -101,15 +101,15 @@ namespace CMcKinnon.BGG.Client.Extensions
             };
         }
 
-        private static PlayerAgePoll ConvertPlayerAgePoll(Poll[] polls)
+        private static PlayerAgePoll ConvertPlayerAgePoll(_Poll[] polls)
         {
-            Poll poll = polls.FirstOrDefault(p => p.Name == "suggested_playerage");
+            _Poll poll = polls.FirstOrDefault(p => p.Name == "suggested_playerage");
             if (poll == null)
             {
                 return null;
             }
 
-            PollResults result = poll.Results.FirstOrDefault();
+            _PollResults result = poll.Results.FirstOrDefault();
             if (result == null)
             {
                 return null;
