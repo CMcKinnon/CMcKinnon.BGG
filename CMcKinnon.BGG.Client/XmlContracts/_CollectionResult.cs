@@ -6,7 +6,7 @@ namespace CMcKinnon.BGG.Client.XmlContracts
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false, ElementName = "items")]
-    public class _CollectionResult
+    public class _CollectionResult : _ObjectBase
     {
         [XmlAttribute(AttributeName = "totalitems")]
         public int TotalItems { get; set; }

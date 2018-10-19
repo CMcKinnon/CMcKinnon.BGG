@@ -2,6 +2,7 @@
 using CMcKinnon.BGG.Contracts.Collections;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CMcKinnon.BGG.Client.Extensions
 {
@@ -12,10 +13,23 @@ namespace CMcKinnon.BGG.Client.Extensions
             return new CollectionHeader
             {
                 TotalItems = collection.TotalItems,
-                PublishedDate = DateTime.Parse(collection.PublishedDate),
+                PublishedDate = !string.IsNullOrEmpty(collection.PublishedDate) ? DateTime.Parse(collection.PublishedDate) : DateTime.MinValue,
                 TermsOfUse = collection.TermsOfUse,
-                Items = new List<CollectionItem>()
+                Items = ConvertItems(collection.Items),
+                ErrorMessage = collection.ErrorMessage
             };
+        }
+
+        private static IList<CollectionItem> ConvertItems(_CollectionItem[] items)
+        {
+            return items?.Select(i => new CollectionItem
+            {
+                ObjectType = i.ObjectType,
+                CollectionId = i.CollectionId,
+                ObjectId = i.ObjectId,
+                SubType = i.SubType
+            })
+            .ToList() ?? new List<CollectionItem>();
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using CMcKinnon.BGG.Client.Extensions;
+﻿using CMcKinnon.BGG.Client.Constants;
+using CMcKinnon.BGG.Client.Extensions;
 using CMcKinnon.BGG.Client.Web;
 using CMcKinnon.BGG.Client.XmlContracts;
 using CMcKinnon.BGG.Contracts.Boardgames;
 using CMcKinnon.BGG.Contracts.Collections;
-using CMcKinnon.BGG.Contracts.Constants;
 using CMcKinnon.BGG.Contracts.Search;
 using System;
 using System.Collections.Generic;
