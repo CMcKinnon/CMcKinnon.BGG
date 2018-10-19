@@ -1,13 +1,12 @@
-﻿using CMcKinnon.BGG.Contracts.Search;
-using CMcKinnon.BGG.Client.XmlContracts;
+﻿using CMcKinnon.BGG.Client.XmlContracts;
+using CMcKinnon.BGG.Contracts.Boardgames;
+using CMcKinnon.BGG.Contracts.Search;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using CMcKinnon.BGG.Contracts.Boardgames;
 
 namespace CMcKinnon.BGG.Client.Extensions
 {
-    public static class ContractConverters
+    public static class BoardgameContractConverters
     {
         public static IList<BoardgameResult> ConvertToBoardgameResultList(this _BoardgameSearchResult boardgames)
         {

@@ -7,5 +7,7 @@
         public static readonly string SEARCH = $"{BASE_URI}/search";
 
         public static readonly string GET_BOARDGAMES = $"{BASE_URI}/boardgame";
+
+        public static readonly string GET_COLLECTION = $"{BASE_URI}/collection";
     }
 }

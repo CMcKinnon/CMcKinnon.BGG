@@ -2,6 +2,7 @@
 using CMcKinnon.BGG.Client.Web;
 using CMcKinnon.BGG.Client.XmlContracts;
 using CMcKinnon.BGG.Contracts.Boardgames;
+using CMcKinnon.BGG.Contracts.Collections;
 using CMcKinnon.BGG.Contracts.Constants;
 using CMcKinnon.BGG.Contracts.Search;
 using System.Collections.Generic;
@@ -64,6 +65,19 @@ namespace CMcKinnon.BGG.Client
             _BoardgameSearchResult result = await resp.Content.DeserializeXml<_BoardgameSearchResult>();
 
             return result.ConvertToBoardgameList();
+        }
+
+        public async Task<CollectionHeader> GetUserCollection(string user)
+        {
+            string uri = $"{Endpoints.GET_COLLECTION}/{user}";
+
+            HttpResponseMessage resp = await xmlRestClient.GetAsync(uri);
+
+            resp.EnsureSuccessStatusCode();
+
+            _CollectionResult result = await resp.Content.DeserializeXml<_CollectionResult>();
+
+            return result.ConvertToCollectionHeader();
         }
     }
 }
