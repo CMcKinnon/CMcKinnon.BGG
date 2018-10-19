@@ -27,9 +27,40 @@ namespace CMcKinnon.BGG.Client.Extensions
                 ObjectType = i.ObjectType,
                 CollectionId = i.CollectionId,
                 ObjectId = i.ObjectId,
-                SubType = i.SubType
+                SubType = i.SubType,
+                Image = i.Image,
+                Thumbnail = i.Thumbnail,
+                Name = i.Name.Value,
+                NumberOfPlays = i.NumberOfPlays,
+                YearPublished = i.YearPublished,
+                Comment = i.Comment,
+                WantPartsList = i.WantPartsList,
+                HasPartsList = i.HasPartsList,
+                Status = ConvertStatus(i.Status)
             })
             .ToList() ?? new List<CollectionItem>();
+        }
+
+        private static CollectionItemStatus ConvertStatus(_CollectionItemStatus status)
+        {
+            if (status == null)
+            {
+                return null;
+            }
+
+            return new CollectionItemStatus
+            {
+                Own = status.Own == 1,
+                Want = status.Want == 1,
+                ForTrade = status.ForTrade == 1,
+                Preordered = status.Preordered == 1,
+                PreviouslyOwned = status.PreviouslyOwned == 1,
+                WantToBuy = status.WantToBuy == 1,
+                WantToPlay = status.WantToPlay == 1,
+                Wishlist = status.Wishlist == 1,
+                WishlistPriority = status.WishlistPriority,
+                LastModified = DateTime.Parse(status.LastModified)
+            };
         }
     }
 }

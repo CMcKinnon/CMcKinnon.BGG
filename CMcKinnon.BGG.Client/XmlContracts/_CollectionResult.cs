@@ -37,5 +37,66 @@ namespace CMcKinnon.BGG.Client.XmlContracts
         [XmlAttribute(AttributeName = "collid")]
         public uint CollectionId { get; set; }
 
+        [XmlElement(ElementName = "name")]
+        public _boardgamesBoardgameName Name { get; set; }
+
+        [XmlElement(ElementName = "yearpublished")]
+        public int YearPublished { get; set; }
+
+        [XmlElement(ElementName = "thumbnail")]
+        public string Thumbnail { get; set; }
+
+        [XmlElement(ElementName = "image")]
+        public string Image { get; set; }
+
+        [XmlElement(ElementName = "comment")]
+        public string Comment { get; set; }
+
+        [XmlElement(ElementName = "haspartslist")]
+        public string HasPartsList { get; set; }
+
+        [XmlElement(ElementName = "wantpartslist")]
+        public string WantPartsList { get; set; }
+
+        [XmlElement(ElementName = "numplays")]
+        public uint NumberOfPlays { get; set; }
+
+        [XmlElement(ElementName = "status")]
+        public _CollectionItemStatus Status { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class _CollectionItemStatus
+    {
+        [XmlAttribute(AttributeName = "own")]
+        public int Own { get; set; }
+
+        [XmlAttribute(AttributeName = "prevowned")]
+        public int PreviouslyOwned { get; set; }
+
+        [XmlAttribute(AttributeName = "fortrade")]
+        public int ForTrade { get; set; }
+
+        [XmlAttribute(AttributeName = "want")]
+        public int Want { get; set; }
+        
+        [XmlAttribute(AttributeName = "wanttoplay")]
+        public int WantToPlay { get; set; }
+
+        [XmlAttribute(AttributeName = "wanttobuy")]
+        public int WantToBuy { get; set; }
+
+        [XmlAttribute(AttributeName = "wishlist")]
+        public int Wishlist { get; set; }
+
+        [XmlAttribute(AttributeName = "wishlistpriority")]
+        public int WishlistPriority { get; set; }
+
+        [XmlAttribute(AttributeName = "preordered")]
+        public int Preordered { get; set; }
+
+        [XmlAttribute(AttributeName = "lastmodified")]
+        public string LastModified { get; set; }
     }
 }
