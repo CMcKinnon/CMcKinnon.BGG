@@ -5,9 +5,12 @@ using CMcKinnon.BGG.Contracts.Boardgames;
 using CMcKinnon.BGG.Contracts.Collections;
 using CMcKinnon.BGG.Contracts.Constants;
 using CMcKinnon.BGG.Contracts.Search;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -67,13 +70,35 @@ namespace CMcKinnon.BGG.Client
             return result.ConvertToBoardgameList();
         }
 
-        public async Task<CollectionHeader> GetUserCollection(string user)
+        public async Task<CollectionHeader> GetUserCollection(string user, RetrySettings retrySettings)
         {
             string uri = $"{Endpoints.GET_COLLECTION}/{user}";
 
-            HttpResponseMessage resp = await xmlRestClient.GetAsync(uri);
+            HttpResponseMessage resp = null;
+            bool done = false;
+            int retry = 0;
+            TimeSpan waitSeconds = TimeSpan.FromSeconds(Math.Max(retrySettings.WaitSeconds, 1));
 
-            resp.EnsureSuccessStatusCode();
+            while (!done)
+            {
+                resp = await xmlRestClient.GetAsync(uri);
+                if (resp.StatusCode == HttpStatusCode.OK)
+                {
+                    done = true;
+                }
+                else if (resp.StatusCode == HttpStatusCode.Accepted)
+                {
+                    if (!retrySettings.Retry || retry >= retrySettings.RetryCount)
+                    {
+                        return new CollectionHeader { StatusCode = (int)HttpStatusCode.Accepted };
+                    }
+                    else
+                    {
+                        retry += 1;
+                        Thread.Sleep(waitSeconds);
+                    }
+                }
+            }
 
             _CollectionResult result = await resp.Content.DeserializeXml<_CollectionResult>();
 
