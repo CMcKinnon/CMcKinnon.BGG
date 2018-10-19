@@ -16,5 +16,26 @@ namespace CMcKinnon.BGG.Client.XmlContracts
 
         [XmlAttribute(AttributeName = "pubdate")]
         public string PublishedDate { get; set; }
+
+        [XmlElement(ElementName = "item")]
+        public _CollectionItem[] Items { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class _CollectionItem
+    {
+        [XmlAttribute(AttributeName = "objecttype")]
+        public string ObjectType { get; set; }
+
+        [XmlAttribute(AttributeName = "objectid")]
+        public uint ObjectId { get; set; }
+
+        [XmlAttribute(AttributeName = "subtype")]
+        public string SubType { get; set; }
+
+        [XmlAttribute(AttributeName = "collid")]
+        public uint CollectionId { get; set; }
+
     }
 }
