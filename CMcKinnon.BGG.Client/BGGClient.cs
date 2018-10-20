@@ -5,6 +5,7 @@ using CMcKinnon.BGG.Client.XmlContracts;
 using CMcKinnon.BGG.Contracts.Boardgames;
 using CMcKinnon.BGG.Contracts.Collections;
 using CMcKinnon.BGG.Contracts.Search;
+using CMcKinnon.BGG.Contracts.Threads;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,6 +110,38 @@ namespace CMcKinnon.BGG.Client
             _CollectionResult result = await resp.Content.DeserializeXml<_CollectionResult>();
 
             return result.ConvertToCollectionHeader();
+        }
+
+        public async Task<ForumThread> GetForumThread(int id, int? startArticle = null, int? count = null, string username = null)
+        {
+            string uri = $"{Endpoints.GET_FORUM_THREAD}/{id}";
+
+            List<string> queryParams = new List<string>();
+            if (startArticle.HasValue)
+            {
+                queryParams.Add($"start={startArticle.Value}");
+            }
+            if (count.HasValue)
+            {
+                queryParams.Add($"count={count.Value}");
+            }
+            if (!string.IsNullOrEmpty(username))
+            {
+                queryParams.Add($"username={username}");
+            }
+
+            if (queryParams.Any())
+            {
+                uri = uri + $"?{string.Join("&", queryParams)}";
+            }
+
+            HttpResponseMessage resp = await xmlRestClient.GetAsync(uri);
+
+            resp.EnsureSuccessStatusCode();
+
+            _ThreadResult result = await resp.Content.DeserializeXml<_ThreadResult>();
+
+            return result.ConvertToForumThread();
         }
     }
 }

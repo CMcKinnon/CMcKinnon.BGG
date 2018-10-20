@@ -14,11 +14,12 @@ namespace CMcKinnon.BGG.Client.Extensions
         {
             byte[] bytes = await content.ReadAsByteArrayAsync();
             string xml = Encoding.UTF8.GetString(bytes);
+            XmlReaderSettings xmlReaderSettings = new XmlReaderSettings {  CloseInput = false };
 
             TXmlContract result;
             using (TextReader reader = new StringReader(xml))
             {
-                using (XmlReader xmlReader = XmlReader.Create(reader, new XmlReaderSettings { CloseInput = false }))
+                using (XmlReader xmlReader = XmlReader.Create(reader, xmlReaderSettings))
                 {
                     XmlSerializer errorSerializer = new XmlSerializer(typeof(_ErrorResult));
                     if (errorSerializer.CanDeserialize(xmlReader))
