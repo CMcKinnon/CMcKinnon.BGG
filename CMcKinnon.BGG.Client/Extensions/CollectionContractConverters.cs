@@ -36,7 +36,8 @@ namespace CMcKinnon.BGG.Client.Extensions
                 Comment = i.Comment,
                 WantPartsList = i.WantPartsList,
                 HasPartsList = i.HasPartsList,
-                Status = ConvertStatus(i.Status)
+                Status = ConvertStatus(i.Status),
+                Stats = ConvertStats(i.Stats)
             })
             .ToList() ?? new List<CollectionItem>();
         }
@@ -60,6 +61,30 @@ namespace CMcKinnon.BGG.Client.Extensions
                 Wishlist = status.Wishlist == 1,
                 WishlistPriority = status.WishlistPriority,
                 LastModified = DateTime.Parse(status.LastModified)
+            };
+        }
+
+        private static CollectionItemStats ConvertStats(_CollectionItemStats stats)
+        {
+            if (stats == null)
+            {
+                return null;
+            }
+
+            return new CollectionItemStats
+            {
+                MinPlayers = stats.MinPlayers,
+                MaxPlayers = stats.MaxPlayers,
+                MinPlayTime = stats.MinPlayTime,
+                MaxPlayTime = stats.MaxPlayTime,
+                PlayingTime = stats.PlayingTime,
+                NumberOwned = stats.NumberOwned,
+                Rating = stats.Rating.Value,
+                Average = stats.Rating?.Average?.Value ?? 0m,
+                BayesAverage = stats.Rating?.BayesAverage?.Value ?? 0m,
+                StandardDeviation = stats.Rating?.StandardDeviation?.Value ?? 0m,
+                Median = stats.Rating?.Median?.Value ?? 0m,
+                UsersRated = (int)(stats.Rating?.UsersRated?.Value ?? 0)
             };
         }
     }

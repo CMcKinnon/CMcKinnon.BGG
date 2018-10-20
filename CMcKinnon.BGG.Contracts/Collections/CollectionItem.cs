@@ -15,5 +15,6 @@
         public string HasPartsList { get; set; }
         public string WantPartsList { get; set; }
         public CollectionItemStatus Status { get; set; }
+        public CollectionItemStats Stats { get; set; }
     }
 }

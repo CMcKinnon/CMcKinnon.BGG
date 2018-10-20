@@ -63,6 +63,9 @@ namespace CMcKinnon.BGG.Client.XmlContracts
 
         [XmlElement(ElementName = "status")]
         public _CollectionItemStatus Status { get; set; }
+
+        [XmlElement(ElementName = "stats")]
+        public _CollectionItemStats Stats { get; set; }
     }
 
     [Serializable]
@@ -98,5 +101,57 @@ namespace CMcKinnon.BGG.Client.XmlContracts
 
         [XmlAttribute(AttributeName = "lastmodified")]
         public string LastModified { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class _CollectionItemStats
+    {
+        [XmlAttribute(AttributeName = "minplayers")]
+        public int MinPlayers { get; set; }
+        [XmlAttribute(AttributeName = "maxplayers")]
+        public int MaxPlayers { get; set; }
+        [XmlAttribute(AttributeName = "minplaytime")]
+        public int MinPlayTime { get; set; }
+        [XmlAttribute(AttributeName = "maxplaytime")]
+        public int MaxPlayTime { get; set; }
+        [XmlAttribute(AttributeName = "playingtime")]
+        public int PlayingTime { get; set; }
+        [XmlAttribute(AttributeName = "numowned")]
+        public int NumberOwned { get; set; }
+
+        [XmlElement(ElementName = "rating")]
+        public _CollectionItemRating Rating { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class _CollectionItemRating
+    {
+        [XmlAttribute(AttributeName = "value")]
+        public string Value { get; set; }
+
+        [XmlElement(ElementName = "usersrated")]
+        public _CollectionItemStat UsersRated { get; set; }
+
+        [XmlElement(ElementName = "average")]
+        public _CollectionItemStat Average { get; set; }
+
+        [XmlElement(ElementName = "bayesaverage")]
+        public _CollectionItemStat BayesAverage { get; set; }
+
+        [XmlElement(ElementName = "stddev")]
+        public _CollectionItemStat StandardDeviation { get; set; }
+
+        [XmlElement(ElementName = "median")]
+        public _CollectionItemStat Median { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class _CollectionItemStat
+    {
+        [XmlAttribute(AttributeName = "value")]
+        public decimal Value { get; set; }
     }
 }
