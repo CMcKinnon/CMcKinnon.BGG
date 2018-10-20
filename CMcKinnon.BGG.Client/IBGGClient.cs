@@ -10,6 +10,6 @@ namespace CMcKinnon.BGG.Client
     {
         Task<IList<BoardgameResult>> SearchAsync(string term, bool exact = false);
         Task<IList<Boardgame>> GetBoardgamesAsync(int[] objectIds, bool includeComments = false, int commentPage = 1, bool includeStatistics = false);
-        Task<CollectionHeader> GetUserCollection(string user, RetrySettings retrySettings);
+        Task<CollectionHeader> GetUserCollection(string user, CollectionQueryOption option, RetrySettings retrySettings);
     }
 }

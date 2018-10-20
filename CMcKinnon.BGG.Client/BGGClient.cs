@@ -70,9 +70,15 @@ namespace CMcKinnon.BGG.Client
             return result.ConvertToBoardgameList();
         }
 
-        public async Task<CollectionHeader> GetUserCollection(string user, RetrySettings retrySettings)
+        public async Task<CollectionHeader> GetUserCollection(string user, CollectionQueryOption option, RetrySettings retrySettings)
         {
             string uri = $"{Endpoints.GET_COLLECTION}/{user}";
+
+            string queryString = option.ConvertToQueryString();
+            if (!string.IsNullOrEmpty(queryString))
+            {
+                uri = $"{uri}?{queryString}";
+            }
 
             HttpResponseMessage resp = null;
             bool done = false;

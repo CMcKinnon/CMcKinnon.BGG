@@ -25,7 +25,7 @@ namespace CMcKinnon.BGG.Client.Extensions
             return items?.Select(i => new CollectionItem
             {
                 ObjectType = i.ObjectType,
-                CollectionId = i.CollectionId,
+                CollectionId = !string.IsNullOrEmpty(i.CollectionId) ? uint.Parse(i.CollectionId) : (uint?)null,
                 ObjectId = i.ObjectId,
                 SubType = i.SubType,
                 Image = i.Image,
@@ -51,16 +51,16 @@ namespace CMcKinnon.BGG.Client.Extensions
 
             return new CollectionItemStatus
             {
-                Own = status.Own == 1,
-                Want = status.Want == 1,
-                ForTrade = status.ForTrade == 1,
-                Preordered = status.Preordered == 1,
-                PreviouslyOwned = status.PreviouslyOwned == 1,
-                WantToBuy = status.WantToBuy == 1,
-                WantToPlay = status.WantToPlay == 1,
-                Wishlist = status.Wishlist == 1,
-                WishlistPriority = status.WishlistPriority,
-                LastModified = DateTime.Parse(status.LastModified)
+                Own = status.Own == "1",
+                Want = status.Want == "1",
+                ForTrade = status.ForTrade == "1",
+                Preordered = status.Preordered == "1",
+                PreviouslyOwned = status.PreviouslyOwned == "1",
+                WantToBuy = status.WantToBuy == "1",
+                WantToPlay = status.WantToPlay == "1",
+                Wishlist = status.Wishlist == "1",
+                WishlistPriority = !string.IsNullOrEmpty(status.WishlistPriority) ? int.Parse(status.WishlistPriority) : 0,
+                LastModified = !string.IsNullOrEmpty(status.LastModified) ? DateTime.Parse(status.LastModified) : DateTime.MinValue
             };
         }
 

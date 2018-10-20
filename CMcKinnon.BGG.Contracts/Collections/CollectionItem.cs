@@ -5,7 +5,7 @@
         public string ObjectType { get; set; }
         public uint ObjectId { get; set; }
         public string SubType { get; set; }
-        public uint CollectionId { get; set; }
+        public uint? CollectionId { get; set; }
         public string Name { get; set; }
         public int YearPublished { get; set; }
         public string Thumbnail { get; set; }

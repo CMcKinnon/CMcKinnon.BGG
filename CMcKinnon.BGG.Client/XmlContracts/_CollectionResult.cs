@@ -35,7 +35,7 @@ namespace CMcKinnon.BGG.Client.XmlContracts
         public string SubType { get; set; }
 
         [XmlAttribute(AttributeName = "collid")]
-        public uint CollectionId { get; set; }
+        public string CollectionId { get; set; }
 
         [XmlElement(ElementName = "name")]
         public _boardgamesBoardgameName Name { get; set; }
@@ -73,31 +73,31 @@ namespace CMcKinnon.BGG.Client.XmlContracts
     public class _CollectionItemStatus
     {
         [XmlAttribute(AttributeName = "own")]
-        public int Own { get; set; }
+        public string Own { get; set; }
 
         [XmlAttribute(AttributeName = "prevowned")]
-        public int PreviouslyOwned { get; set; }
+        public string PreviouslyOwned { get; set; }
 
         [XmlAttribute(AttributeName = "fortrade")]
-        public int ForTrade { get; set; }
+        public string ForTrade { get; set; }
 
         [XmlAttribute(AttributeName = "want")]
-        public int Want { get; set; }
+        public string Want { get; set; }
         
         [XmlAttribute(AttributeName = "wanttoplay")]
-        public int WantToPlay { get; set; }
+        public string WantToPlay { get; set; }
 
         [XmlAttribute(AttributeName = "wanttobuy")]
-        public int WantToBuy { get; set; }
+        public string WantToBuy { get; set; }
 
         [XmlAttribute(AttributeName = "wishlist")]
-        public int Wishlist { get; set; }
+        public string Wishlist { get; set; }
 
         [XmlAttribute(AttributeName = "wishlistpriority")]
-        public int WishlistPriority { get; set; }
+        public string WishlistPriority { get; set; }
 
         [XmlAttribute(AttributeName = "preordered")]
-        public int Preordered { get; set; }
+        public string Preordered { get; set; }
 
         [XmlAttribute(AttributeName = "lastmodified")]
         public string LastModified { get; set; }
