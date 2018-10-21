@@ -1,6 +1,7 @@
 ﻿using CMcKinnon.BGG.Client.XmlContracts;
 using System.IO;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -14,13 +15,14 @@ namespace CMcKinnon.BGG.Client.Extensions
         {
             byte[] bytes = await content.ReadAsByteArrayAsync();
             string xml = Encoding.UTF8.GetString(bytes);
-            XmlReaderSettings xmlReaderSettings = new XmlReaderSettings {  CloseInput = false };
+            XmlReaderSettings xmlReaderSettings = new XmlReaderSettings { CloseInput = false };
 
             TXmlContract result;
             using (TextReader reader = new StringReader(xml))
             {
                 using (XmlReader xmlReader = XmlReader.Create(reader, xmlReaderSettings))
                 {
+                    DisableUndeclaredEntityCheck(xmlReader);
                     XmlSerializer errorSerializer = new XmlSerializer(typeof(_ErrorResult));
                     if (errorSerializer.CanDeserialize(xmlReader))
                     {
@@ -39,6 +41,13 @@ namespace CMcKinnon.BGG.Client.Extensions
             }
 
             return result;
+        }
+
+        private static void DisableUndeclaredEntityCheck(XmlReader xmlReader)
+        {
+            PropertyInfo propertyInfo = xmlReader.GetType().GetProperty(
+                "DisableUndeclaredEntityCheck", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            propertyInfo.SetValue(xmlReader, true);
         }
     }
 }

@@ -139,7 +139,7 @@ namespace CMcKinnon.BGG.Client
 
             resp.EnsureSuccessStatusCode();
 
-            _ThreadResult result = await resp.Content.DeserializeXml<_ThreadResult>();
+            _ForumThreadResult result = await resp.Content.DeserializeXml<_ForumThreadResult>();
 
             return result.ConvertToForumThread();
         }
