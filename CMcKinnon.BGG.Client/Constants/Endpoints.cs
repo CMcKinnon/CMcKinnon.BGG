@@ -13,5 +13,7 @@
         internal static readonly string GET_COLLECTION = $"{BASE_URI}/collection";
 
         internal static readonly string GET_FORUM_THREAD = $"{BGG}/rss/thread";
+
+        internal static readonly string GET_GEEKLIST = $"{BASE_URI}/geeklist";
     }
 }

@@ -5,6 +5,7 @@ using CMcKinnon.BGG.Client.XmlContracts;
 using CMcKinnon.BGG.Contracts;
 using CMcKinnon.BGG.Contracts.Boardgames;
 using CMcKinnon.BGG.Contracts.Collections;
+using CMcKinnon.BGG.Contracts.Geeklists;
 using CMcKinnon.BGG.Contracts.Search;
 using CMcKinnon.BGG.Contracts.Threads;
 using System;
@@ -124,6 +125,26 @@ namespace CMcKinnon.BGG.Client
             _ForumThreadResult result = await resp.Content.DeserializeXml<_ForumThreadResult>();
 
             return result.ConvertToForumThread();
+        }
+
+        public async Task<Geeklist> GetGeeklist(int id, RetrySettings retrySettings, bool getComments = false)
+        {
+            string uri = $"{Endpoints.GET_GEEKLIST}/{id}";
+            if (getComments)
+            {
+                uri = $"{uri}?comments=1";
+            }
+
+            HttpResponseMessage resp = await xmlRestClient.GetWithRetryAsync(uri, retrySettings);
+
+            if (resp.StatusCode == HttpStatusCode.Accepted)
+            {
+                return new Geeklist { StatusCode = (int)HttpStatusCode.Accepted };
+            }
+
+            _GeeklistResult result = await resp.Content.DeserializeXml<_GeeklistResult>();
+
+            return result.ConvertToGeeklist();
         }
     }
 }
