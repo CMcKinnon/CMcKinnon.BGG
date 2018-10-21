@@ -38,7 +38,7 @@ namespace CMcKinnon.BGG.Client.XmlContracts
         public string CollectionId { get; set; }
 
         [XmlElement(ElementName = "name")]
-        public _boardgamesBoardgameName Name { get; set; }
+        public _BoardgameName Name { get; set; }
 
         [XmlElement(ElementName = "yearpublished")]
         public int YearPublished { get; set; }

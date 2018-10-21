@@ -9,7 +9,7 @@ namespace CMcKinnon.BGG.Client.XmlContracts
     public class _BoardgameSearchResult : _ObjectBase
     {
         [XmlElement("boardgame")]
-        public _boardgamesBoardgame[] Boardgames { get; set; }
+        public _Boardgame[] Boardgames { get; set; }
 
         [XmlAttribute()]
         public string termsofuse { get; set; }
@@ -17,13 +17,13 @@ namespace CMcKinnon.BGG.Client.XmlContracts
 
     [Serializable]
     [XmlType(AnonymousType = true)]
-    public class _boardgamesBoardgame
+    public class _Boardgame
     {
         [XmlAttribute(AttributeName = "objectid")]
         public uint ObjectId { get; set; }
 
         [XmlElement(ElementName = "name")]
-        public _boardgamesBoardgameName[] names { get; set; }
+        public _BoardgameName[] names { get; set; }
 
         [XmlElement(ElementName = "yearpublished")]
         public int YearPublished { get; set; }
@@ -97,7 +97,7 @@ namespace CMcKinnon.BGG.Client.XmlContracts
 
     [Serializable]
     [XmlType(AnonymousType = true)]
-    public class _boardgamesBoardgameName
+    public class _BoardgameName
     {
         [XmlAttribute(AttributeName = "primary")]
         public bool IsPrimaryName { get; set; }
