@@ -8,12 +8,10 @@ using CMcKinnon.BGG.Contracts.Collections;
 using CMcKinnon.BGG.Contracts.Geeklists;
 using CMcKinnon.BGG.Contracts.Search;
 using CMcKinnon.BGG.Contracts.Threads;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 
