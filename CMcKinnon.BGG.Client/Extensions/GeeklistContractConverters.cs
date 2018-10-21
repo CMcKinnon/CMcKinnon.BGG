@@ -16,9 +16,9 @@ namespace CMcKinnon.BGG.Client.Extensions
                 StatusCode = (int)HttpStatusCode.OK,
                 Id = geeklist.Id,
                 Description = geeklist.Description,
-                EditDate = !string.IsNullOrEmpty(geeklist.EditDate) ? DateTime.Parse(geeklist.EditDate) : DateTime.MinValue,
+                EditDate = geeklist.EditDate.GetSafeDateTime(),
                 EditDateTimestamp = geeklist.EditDateTimestamp,
-                PostDate = !string.IsNullOrEmpty(geeklist.PostDate) ? DateTime.Parse(geeklist.PostDate) : DateTime.MinValue,
+                PostDate = geeklist.PostDate.GetSafeDateTime(),
                 PostDateTimestamp = geeklist.PostDateTimestamp,
                 NumberOfItems = geeklist.NumberOfItems,
                 Thumbs = geeklist.Thumbs,
@@ -42,8 +42,8 @@ namespace CMcKinnon.BGG.Client.Extensions
                 SubType = i.SubType,
                 Thumbs = i.Thumbs,
                 Body = i.Body,
-                EditDate = !string.IsNullOrEmpty(i.EditDate) ? DateTime.Parse(i.EditDate) : DateTime.MinValue,
-                PostDate = !string.IsNullOrEmpty(i.PostDate) ? DateTime.Parse(i.PostDate) : DateTime.MinValue,
+                EditDate = i.EditDate.GetSafeDateTime(),
+                PostDate = i.PostDate.GetSafeDateTime(),
                 Comments = ConvertGeeklistComments(i.Comments)
             }).ToList() ?? new List<GeeklistItem>();
         }
@@ -55,9 +55,9 @@ namespace CMcKinnon.BGG.Client.Extensions
                 Username = c.Username,
                 Thumbs = c.Thumbs,
                 Body = c.Body,
-                EditDate = !string.IsNullOrEmpty(c.EditDate) ? DateTime.Parse(c.EditDate) : DateTime.MinValue,
-                PostDate = !string.IsNullOrEmpty(c.PostDate) ? DateTime.Parse(c.PostDate) : DateTime.MinValue,
-                Date = !string.IsNullOrEmpty(c.Date) ? DateTime.Parse(c.EditDate) : DateTime.MinValue,
+                EditDate = c.EditDate.GetSafeDateTime(),
+                PostDate = c.PostDate.GetSafeDateTime(),
+                Date = c.Date.GetSafeDateTime(),
             }).ToList() ?? new List<GeeklistComment>();
         }
     }

@@ -15,8 +15,8 @@ namespace CMcKinnon.BGG.Client.Extensions
                 Title = thread.Channel?.Title,
                 Description = thread.Channel?.Description,
                 Language = thread.Channel?.Language,
-                LastBuildDate = !string.IsNullOrEmpty(thread.Channel?.LastBuildDate) ? DateTime.Parse(thread.Channel?.LastBuildDate) : DateTime.MinValue,
-                PublicationDate = !string.IsNullOrEmpty(thread.Channel?.PublicationDate) ? DateTime.Parse(thread.Channel?.PublicationDate) : DateTime.MinValue,
+                LastBuildDate = (DateTime)thread.Channel?.LastBuildDate.GetSafeDateTime(),
+                PublicationDate = (DateTime)thread.Channel?.PublicationDate.GetSafeDateTime(),
                 Link = thread.Channel?.Link,
                 Webmaster = thread.Channel?.Webmaster,
                 Image = ConvertForumThreadImage(thread.Channel?.Image),
@@ -43,7 +43,7 @@ namespace CMcKinnon.BGG.Client.Extensions
                 Creator = i.Creator,
                 Guid = i.Guid,
                 Link = i.Link,
-                PublicationDate = !string.IsNullOrEmpty(i.PublicationDate) ? DateTime.Parse(i.PublicationDate) : DateTime.MinValue
+                PublicationDate = i.PublicationDate.GetSafeDateTime()
             }).OrderBy(c => c.PublicationDate).ToList() ?? new List<ForumThreadComment>();
         }
     }

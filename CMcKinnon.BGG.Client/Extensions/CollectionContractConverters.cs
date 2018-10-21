@@ -15,7 +15,7 @@ namespace CMcKinnon.BGG.Client.Extensions
             {
                 StatusCode = (int)HttpStatusCode.OK,
                 TotalItems = collection.TotalItems,
-                PublishedDate = !string.IsNullOrEmpty(collection.PublishedDate) ? DateTime.Parse(collection.PublishedDate) : DateTime.MinValue,
+                PublishedDate = collection.PublishedDate.GetSafeDateTime(),
                 TermsOfUse = collection.TermsOfUse,
                 Items = ConvertItems(collection.Items),
                 ErrorMessage = collection.ErrorMessage
@@ -62,7 +62,7 @@ namespace CMcKinnon.BGG.Client.Extensions
                 WantToPlay = status.WantToPlay == "1",
                 Wishlist = status.Wishlist == "1",
                 WishlistPriority = !string.IsNullOrEmpty(status.WishlistPriority) ? int.Parse(status.WishlistPriority) : 0,
-                LastModified = !string.IsNullOrEmpty(status.LastModified) ? DateTime.Parse(status.LastModified) : DateTime.MinValue
+                LastModified = status.LastModified.GetSafeDateTime()
             };
         }
 
