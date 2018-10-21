@@ -2,6 +2,7 @@
 using CMcKinnon.BGG.Client.Extensions;
 using CMcKinnon.BGG.Client.Web;
 using CMcKinnon.BGG.Client.XmlContracts;
+using CMcKinnon.BGG.Contracts;
 using CMcKinnon.BGG.Contracts.Boardgames;
 using CMcKinnon.BGG.Contracts.Collections;
 using CMcKinnon.BGG.Contracts.Search;
@@ -81,30 +82,11 @@ namespace CMcKinnon.BGG.Client
                 uri = $"{uri}?{queryString}";
             }
 
-            HttpResponseMessage resp = null;
-            bool done = false;
-            int retry = 0;
-            TimeSpan waitSeconds = TimeSpan.FromSeconds(Math.Max(retrySettings.WaitSeconds, 1));
+            HttpResponseMessage resp = await xmlRestClient.GetWithRetryAsync(uri, retrySettings);
 
-            while (!done)
+            if (resp.StatusCode == HttpStatusCode.Accepted)
             {
-                resp = await xmlRestClient.GetAsync(uri);
-                if (resp.StatusCode == HttpStatusCode.OK)
-                {
-                    done = true;
-                }
-                else if (resp.StatusCode == HttpStatusCode.Accepted)
-                {
-                    if (!retrySettings.Retry || retry >= retrySettings.RetryCount)
-                    {
-                        return new CollectionHeader { StatusCode = (int)HttpStatusCode.Accepted };
-                    }
-                    else
-                    {
-                        retry += 1;
-                        Thread.Sleep(waitSeconds);
-                    }
-                }
+                return new CollectionHeader { StatusCode = (int)HttpStatusCode.Accepted };
             }
 
             _CollectionResult result = await resp.Content.DeserializeXml<_CollectionResult>();

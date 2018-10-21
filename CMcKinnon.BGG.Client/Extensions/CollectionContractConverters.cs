@@ -3,6 +3,7 @@ using CMcKinnon.BGG.Contracts.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace CMcKinnon.BGG.Client.Extensions
 {
@@ -12,6 +13,7 @@ namespace CMcKinnon.BGG.Client.Extensions
         {
             return new CollectionHeader
             {
+                StatusCode = (int)HttpStatusCode.OK,
                 TotalItems = collection.TotalItems,
                 PublishedDate = !string.IsNullOrEmpty(collection.PublishedDate) ? DateTime.Parse(collection.PublishedDate) : DateTime.MinValue,
                 TermsOfUse = collection.TermsOfUse,

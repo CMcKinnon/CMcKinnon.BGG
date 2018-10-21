@@ -12,4 +12,8 @@
     <ProjectReference Include="..\CMcKinnon.BGG.Contracts\CMcKinnon.BGG.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
 </Project>

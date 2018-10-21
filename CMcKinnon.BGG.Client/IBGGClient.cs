@@ -1,4 +1,5 @@
-﻿using CMcKinnon.BGG.Contracts.Boardgames;
+﻿using CMcKinnon.BGG.Contracts;
+using CMcKinnon.BGG.Contracts.Boardgames;
 using CMcKinnon.BGG.Contracts.Collections;
 using CMcKinnon.BGG.Contracts.Search;
 using CMcKinnon.BGG.Contracts.Threads;

@@ -1,6 +1,9 @@
-﻿using System;
+﻿using CMcKinnon.BGG.Contracts;
+using System;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CMcKinnon.BGG.Client.Web
@@ -25,6 +28,37 @@ namespace CMcKinnon.BGG.Client.Web
             HttpResponseMessage response = await InvokeRequestAsync(request);
 
             return response;
+        }
+
+        public async Task<HttpResponseMessage> GetWithRetryAsync(string uri, RetrySettings retrySettings, Action<HttpRequestHeaders> setHeaders = null)
+        {
+            HttpResponseMessage resp = null;
+            bool done = false;
+            int retry = 0;
+            TimeSpan waitSeconds = TimeSpan.FromSeconds(Math.Max(retrySettings.WaitSeconds, 1));
+
+            while (!done)
+            {
+                resp = await GetAsync(uri);
+                if (resp.StatusCode == HttpStatusCode.OK)
+                {
+                    done = true;
+                }
+                else if (resp.StatusCode == HttpStatusCode.Accepted)
+                {
+                    if (!retrySettings.Retry || retry >= retrySettings.RetryCount)
+                    {
+                        done = true;
+                    }
+                    else
+                    {
+                        retry += 1;
+                        Thread.Sleep(waitSeconds);
+                    }
+                }
+            }
+
+            return resp;
         }
 
         private async Task<HttpResponseMessage> InvokeRequestAsync(HttpRequestMessage request)

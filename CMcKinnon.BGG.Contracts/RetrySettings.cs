@@ -1,4 +1,4 @@
-﻿namespace CMcKinnon.BGG.Contracts.Collections
+﻿namespace CMcKinnon.BGG.Contracts
 {
     public class RetrySettings
     {
