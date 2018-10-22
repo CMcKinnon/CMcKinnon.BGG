@@ -6,7 +6,7 @@ namespace CMcKinnon.BGG.Client.XmlContracts
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false, ElementName = "geeklist")]
-    public class _GeeklistResult : _ObjectBase
+    public class _GeeklistResult : _XmlContractBase
     {
         [XmlAttribute(AttributeName = "id")]
         public int Id { get; set; }

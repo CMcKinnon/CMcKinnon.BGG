@@ -5,6 +5,9 @@ namespace CMcKinnon.BGG.Contracts.Threads
 {
     public class ForumThread
     {
+        public int StatusCode { get; set; }
+        public string ErrorMessage { get; set; }
+
         public string Title { get; set; }
         public string Description { get; set; }
         public string Language { get; set; }
@@ -16,7 +19,5 @@ namespace CMcKinnon.BGG.Contracts.Threads
 
         public ForumThreadImage Image { get; set; }
         public List<ForumThreadComment> Comments { get; set; }
-
-        public string ErrorMessage { get; set; }
     }
 }

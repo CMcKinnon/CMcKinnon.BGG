@@ -6,7 +6,7 @@ namespace CMcKinnon.BGG.Client.XmlContracts
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false, ElementName = "rss")]
-    public class _ForumThreadResult : _ObjectBase
+    public class _ForumThreadResult : _XmlContractBase
     {
         [XmlAttribute(AttributeName = "version")]
         public string Version { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace CMcKinnon.BGG.Client.XmlContracts
 {
-    public class _ObjectBase
+    public class _XmlContractBase
     {
         public string ErrorMessage { get; set; }
     }

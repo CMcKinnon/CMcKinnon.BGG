@@ -6,6 +6,8 @@ namespace CMcKinnon.BGG.Contracts.Geeklists
     public class Geeklist
     {
         public int StatusCode { get; set; }
+        public string ErrorMessage { get; set; }
+
         public int Id { get; set; }
         public DateTime PostDate { get; set; }
         public long PostDateTimestamp { get; set; }
@@ -19,7 +21,5 @@ namespace CMcKinnon.BGG.Contracts.Geeklists
 
         public List<GeeklistItem> Items { get; set; }
         public List<GeeklistComment> Comments { get; set; }
-
-        public string ErrorMessage { get; set; }
     }
 }

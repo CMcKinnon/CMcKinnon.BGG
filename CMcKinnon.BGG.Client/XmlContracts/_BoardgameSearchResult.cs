@@ -6,7 +6,7 @@ namespace CMcKinnon.BGG.Client.XmlContracts
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false, ElementName = "boardgames")]
-    public class _BoardgameSearchResult : _ObjectBase
+    public class _BoardgameSearchResult : _XmlContractBase
     {
         [XmlElement("boardgame")]
         public _Boardgame[] Boardgames { get; set; }

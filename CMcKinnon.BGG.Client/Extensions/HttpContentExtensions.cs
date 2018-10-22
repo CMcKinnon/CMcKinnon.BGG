@@ -11,7 +11,7 @@ namespace CMcKinnon.BGG.Client.Extensions
 {
     public static class HttpContentExtensions
     {
-        public static async Task<TXmlContract> DeserializeXml<TXmlContract>(this HttpContent content) where TXmlContract : _ObjectBase, new()
+        public static async Task<TXmlContract> DeserializeXml<TXmlContract>(this HttpContent content) where TXmlContract : _XmlContractBase, new()
         {
             byte[] bytes = await content.ReadAsByteArrayAsync();
             string xml = Encoding.UTF8.GetString(bytes);

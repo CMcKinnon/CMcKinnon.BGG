@@ -4,6 +4,8 @@ namespace CMcKinnon.BGG.Contracts.Boardgames
 {
     public class Boardgame
     {
+        public int StatusCode { get; set; }
+
         public uint ObjectId { get; set; }
         public string PrimaryName { get; set; }
         public List<string> OtherNames { get; set; }
