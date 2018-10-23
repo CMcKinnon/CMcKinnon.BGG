@@ -3,6 +3,7 @@ using CMcKinnon.BGG.Contracts.Boardgames;
 using CMcKinnon.BGG.Contracts.Search;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace CMcKinnon.BGG.Client.Extensions
 {
@@ -12,6 +13,7 @@ namespace CMcKinnon.BGG.Client.Extensions
         {
             return boardgames.Boardgames?.Select(b => new BoardgameResult
             {
+                StatusCode = (int)HttpStatusCode.OK,
                 Name = b.names.FirstOrDefault()?.Value ?? "(no primary name)",
                 ObjectId = b.ObjectId,
                 YearPublished = b.YearPublished
@@ -23,6 +25,7 @@ namespace CMcKinnon.BGG.Client.Extensions
         {
             return boardgames.Boardgames?.Select(b => new Boardgame
             {
+                StatusCode = (int)HttpStatusCode.OK,
                 PrimaryName = b.names.FirstOrDefault(n => n.IsPrimaryName)?.Value ?? "(no primary name)",
                 OtherNames = b.names.Where(n => !n.IsPrimaryName).Select(p => p.Value).ToList(),
                 ObjectId = b.ObjectId,

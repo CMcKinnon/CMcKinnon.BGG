@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using CMcKinnon.BGG.Client.XmlContracts;
 using CMcKinnon.BGG.Contracts.Threads;
 
@@ -12,6 +13,7 @@ namespace CMcKinnon.BGG.Client.Extensions
         {
             return new ForumThread
             {
+                StatusCode = (int)HttpStatusCode.OK,
                 Title = thread.Channel?.Title,
                 Description = thread.Channel?.Description,
                 Language = thread.Channel?.Language,
