@@ -8,7 +8,10 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddBGGClient(this IServiceCollection services)
         {
             services.AddSingleton<IXmlRestClient, XmlRestClient>();
-            return services.AddSingleton<IBGGClient, BGGClient>();
+            services.AddSingleton<IBGGClient, BGGClient>();
+            services.AddSingleton<IBGGClientV2, BGGClientV2>();
+
+            return services;
         }
     }
 }
