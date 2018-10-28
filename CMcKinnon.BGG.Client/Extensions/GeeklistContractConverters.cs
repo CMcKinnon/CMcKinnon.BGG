@@ -13,6 +13,7 @@ namespace CMcKinnon.BGG.Client.Extensions
             return new Geeklist
             {
                 StatusCode = (int)HttpStatusCode.OK,
+                ErrorMessage = geeklist.ErrorMessage,
                 Id = geeklist.Id,
                 Description = geeklist.Description,
                 EditDate = geeklist.EditDate.GetSafeDateTime(),

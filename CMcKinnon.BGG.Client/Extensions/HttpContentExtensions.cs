@@ -24,12 +24,21 @@ namespace CMcKinnon.BGG.Client.Extensions
                 {
                     DisableUndeclaredEntityCheck(xmlReader);
                     XmlSerializer errorSerializer = new XmlSerializer(typeof(_ErrorResult));
+                    XmlSerializer errorMessageSerializer = new XmlSerializer(typeof(_ErrorMessageResult));
                     if (errorSerializer.CanDeserialize(xmlReader))
                     {
                         _ErrorResult error = (_ErrorResult)errorSerializer.Deserialize(xmlReader);
                         result = new TXmlContract
                         {
                             ErrorMessage = error.Error.Message
+                        };
+                    }
+                    else if (errorMessageSerializer.CanDeserialize(xmlReader))
+                    {
+                        _ErrorMessageResult error = (_ErrorMessageResult)errorMessageSerializer.Deserialize(xmlReader);
+                        result = new TXmlContract
+                        {
+                            ErrorMessage = error.Message
                         };
                     }
                     else
