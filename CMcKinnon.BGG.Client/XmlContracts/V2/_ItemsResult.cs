@@ -25,11 +25,17 @@ namespace CMcKinnon.BGG.Client.XmlContracts.V2
         [XmlAttribute(AttributeName = "id")]
         public int Id { get; set; }
 
+        [XmlAttribute(AttributeName = "rank")]
+        public int Rank { get; set; }
+
         [XmlElement(ElementName = "yearpublished")]
         public _ItemYear YearPublished { get; set; }
 
         [XmlElement(ElementName = "name")]
         public _ItemName Name { get; set; }
+
+        [XmlElement(ElementName = "thumbnail")]
+        public _ItemThumbnail Thumbnail { get; set; }
     }
 
     [Serializable]
@@ -46,5 +52,13 @@ namespace CMcKinnon.BGG.Client.XmlContracts.V2
     {
         [XmlAttribute(AttributeName = "value")]
         public string Name { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class _ItemThumbnail
+    {
+        [XmlAttribute(AttributeName = "value")]
+        public string Url { get; set; }
     }
 }

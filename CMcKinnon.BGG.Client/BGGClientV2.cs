@@ -37,15 +37,28 @@ namespace CMcKinnon.BGG.Client
 
             if (!resp.IsSuccessStatusCode)
             {
-                return new SearchResult
-                {
-                    StatusCode = (int)resp.StatusCode
-                };
+                return new SearchResult { StatusCode = (int)resp.StatusCode };
             }
 
             _ItemsResult result = await resp.Content.DeserializeXml<_ItemsResult>();
 
             return result.ConvertToSearchResult();
+        }
+
+        public async Task<HotItemResult> GetHotItemsAsync(HotItemType type)
+        {
+            string uri = $"{EndpointsV2.HOT_ITEMS_URI}?type={type}";
+
+            HttpResponseMessage resp = await xmlRestClient.GetAsync(uri);
+
+            if (!resp.IsSuccessStatusCode)
+            {
+                return new HotItemResult { StatusCode = (int)resp.StatusCode };
+            }
+
+            _ItemsResult result = await resp.Content.DeserializeXml<_ItemsResult>();
+
+            return result.ConvertToHotItemResult();
         }
     }
 }
