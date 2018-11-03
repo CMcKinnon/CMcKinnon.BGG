@@ -1,13 +1,13 @@
-﻿using CMcKinnon.BGG.Contracts.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Web;
 
 namespace CMcKinnon.BGG.Client.Extensions
 {
-    internal static class CollectionQueryOptionExtensions
+    internal static class ObjectExtensions
     {
-        internal static string ConvertToQueryString(this CollectionQueryOption option)
+        internal static string ConvertToQueryString(this object option, Dictionary<string, string> replacements = null)
         {
             List<string> options = new List<string>();
 
@@ -22,8 +22,14 @@ namespace CMcKinnon.BGG.Client.Extensions
                     {
                         val = (bool)value ? "1" : "0";
                     }
+                    if (value is DateTime dt)
+                    {
+                        val = dt.ToString("yyyy-MM-dd");
+                    }
                     string queryValue = HttpUtility.UrlEncode(val);
-                    options.Add(string.Join("=", property.Name.ToLower(), queryValue));
+                    string propName = property.Name.ToLower();
+                    propName = replacements?.ContainsKey(propName) ?? false ? replacements[propName] : propName;
+                    options.Add(string.Join("=", propName, queryValue));
                 }
             }
 
