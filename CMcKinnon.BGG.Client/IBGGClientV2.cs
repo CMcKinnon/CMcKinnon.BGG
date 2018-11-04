@@ -9,5 +9,6 @@ namespace CMcKinnon.BGG.Client
         Task<HotItemResult> GetHotItemsAsync(HotItemType type);
         Task<PlayResult> GetPlaysAsync(PlayRequest request);
         Task<UserResult> GetUserAsync(UserRequest request);
+        Task<ThingResult> GetThingsAsync(ThingRequest request);
     }
 }
