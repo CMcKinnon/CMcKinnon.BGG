@@ -15,6 +15,7 @@ namespace CMcKinnon.BGG.Client.Extensions.V2
             return new PlayResult
             {
                 StatusCode = (int)HttpStatusCode.OK,
+                ErrorMessage = play.ErrorMessage,
                 Username = play.Username,
                 UserId = play.UserId,
                 TotalPlays = play.TotalPlays,

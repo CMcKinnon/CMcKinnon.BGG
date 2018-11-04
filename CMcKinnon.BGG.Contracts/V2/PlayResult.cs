@@ -5,6 +5,7 @@ namespace CMcKinnon.BGG.Contracts.V2
     public class PlayResult
     {
         public int StatusCode { get; set; }
+        public string ErrorMessage { get; set; }
         public string Username { get; set; }
         public int UserId { get; set; }
         public int TotalPlays { get; set; }

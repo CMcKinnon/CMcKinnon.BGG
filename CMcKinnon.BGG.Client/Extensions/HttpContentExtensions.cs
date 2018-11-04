@@ -1,4 +1,5 @@
 ﻿using CMcKinnon.BGG.Client.XmlContracts;
+using CMcKinnon.BGG.Client.XmlContracts.V2;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
@@ -25,6 +26,7 @@ namespace CMcKinnon.BGG.Client.Extensions
                     DisableUndeclaredEntityCheck(xmlReader);
                     XmlSerializer errorSerializer = new XmlSerializer(typeof(_ErrorResult));
                     XmlSerializer errorMessageSerializer = new XmlSerializer(typeof(_ErrorMessageResult));
+                    XmlSerializer playErrorSerializer = new XmlSerializer(typeof(_PlayError));
                     if (errorSerializer.CanDeserialize(xmlReader))
                     {
                         _ErrorResult error = (_ErrorResult)errorSerializer.Deserialize(xmlReader);
@@ -36,6 +38,14 @@ namespace CMcKinnon.BGG.Client.Extensions
                     else if (errorMessageSerializer.CanDeserialize(xmlReader))
                     {
                         _ErrorMessageResult error = (_ErrorMessageResult)errorMessageSerializer.Deserialize(xmlReader);
+                        result = new TXmlContract
+                        {
+                            ErrorMessage = error.Message
+                        };
+                    }
+                    else if (playErrorSerializer.CanDeserialize(xmlReader))
+                    {
+                        _PlayError error = (_PlayError)playErrorSerializer.Deserialize(xmlReader);
                         result = new TXmlContract
                         {
                             ErrorMessage = error.Message
