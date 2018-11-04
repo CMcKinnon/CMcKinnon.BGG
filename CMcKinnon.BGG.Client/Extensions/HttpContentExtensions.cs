@@ -26,7 +26,7 @@ namespace CMcKinnon.BGG.Client.Extensions
                     DisableUndeclaredEntityCheck(xmlReader);
                     XmlSerializer errorSerializer = new XmlSerializer(typeof(_ErrorResult));
                     XmlSerializer errorMessageSerializer = new XmlSerializer(typeof(_ErrorMessageResult));
-                    XmlSerializer playErrorSerializer = new XmlSerializer(typeof(_PlayError));
+                    XmlSerializer divErrorSerializer = new XmlSerializer(typeof(_DivError));
                     if (errorSerializer.CanDeserialize(xmlReader))
                     {
                         _ErrorResult error = (_ErrorResult)errorSerializer.Deserialize(xmlReader);
@@ -43,9 +43,9 @@ namespace CMcKinnon.BGG.Client.Extensions
                             ErrorMessage = error.Message
                         };
                     }
-                    else if (playErrorSerializer.CanDeserialize(xmlReader))
+                    else if (divErrorSerializer.CanDeserialize(xmlReader))
                     {
-                        _PlayError error = (_PlayError)playErrorSerializer.Deserialize(xmlReader);
+                        _DivError error = (_DivError)divErrorSerializer.Deserialize(xmlReader);
                         result = new TXmlContract
                         {
                             ErrorMessage = error.Message

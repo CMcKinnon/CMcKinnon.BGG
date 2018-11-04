@@ -86,5 +86,27 @@ namespace CMcKinnon.BGG.Client
 
             return result.ConvertToPlayResult();
         }
+
+        public async Task<UserResult> GetUserAsync(UserRequest request)
+        {
+            string uri = EndpointsV2.USER_URI;
+
+            string queryString = request.ConvertToQueryString();
+            if (!string.IsNullOrEmpty(queryString))
+            {
+                uri = $"{uri}?{queryString}";
+            }
+
+            HttpResponseMessage resp = await xmlRestClient.GetAsync(uri);
+
+            if (!resp.IsSuccessStatusCode)
+            {
+                return new UserResult { StatusCode = (int)resp.StatusCode };
+            }
+
+            _UserResult result = await resp.Content.DeserializeXml<_UserResult>();
+
+            return result.ConvertToUserResult();
+        }
     }
 }

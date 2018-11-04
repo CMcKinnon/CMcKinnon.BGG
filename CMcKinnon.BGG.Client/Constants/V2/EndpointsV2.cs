@@ -8,5 +8,6 @@
         internal static readonly string SEARCH_URI = $"{BGG_BASE}/search";
         internal static readonly string HOT_ITEMS_URI = $"{BGG_BASE}/hot";
         internal static readonly string PLAYS_URI = $"{BGG_BASE}/plays";
+        internal static readonly string USER_URI = $"{BGG_BASE}/user";
     }
 }
