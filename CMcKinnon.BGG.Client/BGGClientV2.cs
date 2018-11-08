@@ -19,6 +19,11 @@ namespace CMcKinnon.BGG.Client
             { "playtype", "type" },
             { "playsubtype", "subtype" }
         };
+        private readonly Dictionary<string, string> thingParamConversion = new Dictionary<string, string>
+        {
+            { "ids", "id" },
+            { "thingtypes", "type" }
+        };
 
         public BGGClientV2(IXmlRestClient xmlRestClient)
         {
@@ -113,7 +118,7 @@ namespace CMcKinnon.BGG.Client
         {
             string uri = EndpointsV2.THING_URI;
 
-            string queryString = request.ConvertToQueryString();
+            string queryString = request.ConvertToQueryString(thingParamConversion);
             if (!string.IsNullOrEmpty(queryString))
             {
                 uri = $"{uri}?{queryString}";
