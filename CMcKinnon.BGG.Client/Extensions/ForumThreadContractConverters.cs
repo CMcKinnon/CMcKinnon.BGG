@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using CMcKinnon.BGG.Client.XmlContracts;
-using CMcKinnon.BGG.Contracts.Threads;
+using CMcKinnon.BGG.Client.Contracts.Threads;
 
 namespace CMcKinnon.BGG.Client.Extensions
 {

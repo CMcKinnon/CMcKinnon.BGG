@@ -3,7 +3,7 @@ using CMcKinnon.BGG.Client.Extensions;
 using CMcKinnon.BGG.Client.Extensions.V2;
 using CMcKinnon.BGG.Client.Web;
 using CMcKinnon.BGG.Client.XmlContracts.V2;
-using CMcKinnon.BGG.Contracts.V2;
+using CMcKinnon.BGG.Client.Contracts.V2;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;

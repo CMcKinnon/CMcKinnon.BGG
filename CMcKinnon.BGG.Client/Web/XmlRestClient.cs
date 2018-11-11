@@ -1,4 +1,4 @@
-﻿using CMcKinnon.BGG.Contracts;
+﻿using CMcKinnon.BGG.Client.Contracts;
 using System;
 using System.Net;
 using System.Net.Http;

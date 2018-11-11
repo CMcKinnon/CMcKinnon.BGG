@@ -1,9 +1,9 @@
-﻿using CMcKinnon.BGG.Contracts;
-using CMcKinnon.BGG.Contracts.Boardgames;
-using CMcKinnon.BGG.Contracts.Collections;
-using CMcKinnon.BGG.Contracts.Geeklists;
-using CMcKinnon.BGG.Contracts.Search;
-using CMcKinnon.BGG.Contracts.Threads;
+﻿using CMcKinnon.BGG.Client.Contracts;
+using CMcKinnon.BGG.Client.Contracts.Boardgames;
+using CMcKinnon.BGG.Client.Contracts.Collections;
+using CMcKinnon.BGG.Client.Contracts.Geeklists;
+using CMcKinnon.BGG.Client.Contracts.Search;
+using CMcKinnon.BGG.Client.Contracts.Threads;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

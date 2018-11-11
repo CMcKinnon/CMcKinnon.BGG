@@ -1,5 +1,5 @@
 ﻿using CMcKinnon.BGG.Client.XmlContracts;
-using CMcKinnon.BGG.Contracts.Geeklists;
+using CMcKinnon.BGG.Client.Contracts.Geeklists;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;

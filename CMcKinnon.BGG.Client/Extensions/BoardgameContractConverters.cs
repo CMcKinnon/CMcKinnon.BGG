@@ -1,6 +1,6 @@
 ﻿using CMcKinnon.BGG.Client.XmlContracts;
-using CMcKinnon.BGG.Contracts.Boardgames;
-using CMcKinnon.BGG.Contracts.Search;
+using CMcKinnon.BGG.Client.Contracts.Boardgames;
+using CMcKinnon.BGG.Client.Contracts.Search;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;

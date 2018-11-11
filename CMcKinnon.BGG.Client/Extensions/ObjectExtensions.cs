@@ -1,4 +1,4 @@
-﻿using CMcKinnon.BGG.Contracts.V2;
+﻿using CMcKinnon.BGG.Client.Contracts.V2;
 using System;
 using System.Collections.Generic;
 using System.Reflection;

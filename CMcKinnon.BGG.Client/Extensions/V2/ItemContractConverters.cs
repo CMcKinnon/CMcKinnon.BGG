@@ -1,5 +1,5 @@
 ﻿using CMcKinnon.BGG.Client.XmlContracts.V2;
-using CMcKinnon.BGG.Contracts.V2;
+using CMcKinnon.BGG.Client.Contracts.V2;
 using System;
 using System.Linq;
 using System.Net;
